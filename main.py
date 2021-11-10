@@ -1,16 +1,20 @@
-# This is a sample Python script.
+import os
+import gym
+from stable_baselines3 import PPO
+from stable_baselines3.common.vec_env import DummyVecEnv
+from stable_baselines3.common.evaluation import evaluate_policy
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+environment_name = "CartPole-v0"
+env = gym.make(environment_name)
+episodes = 5
+for episode in range(1, episodes + 1):
+    state = env.reset()
+    done = False
+    score = 0
+    while not done:
+        env.render()
+        action = env.action_space.sample()
+        n_state, reward, done, info = env.step(action)
+        score += 1
+    print('Episode: {episode} Score: {score}')
+env.close()
