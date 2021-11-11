@@ -16,7 +16,7 @@ for episode in range(1, episodes + 1):
         action = env.action_space.sample()
         n_state, reward, done, info = env.step(action)
         score += 1
-    print("Episode: {episode} Score: {score}")
+    print(f"Episode: {episode} Score: {score}")
 env.close()
 
 import torch
